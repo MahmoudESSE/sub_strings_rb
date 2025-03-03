@@ -6,7 +6,8 @@ def substrings(str, dictionary)
   # @param word [String]
   # @param occurance [Integer]
   dictionary.each_with_object(Hash.new(0)) do |word, occurance|
-    occurance[word.to_sym] += 1 if word.downcase.eql? str.downcase[word]
+    matches = str.downcase.scan(word.downcase).length
+    occurance[word.downcase.to_sym] = matches if matches > 0
     occurance
   end
 end
